@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .close {
+            display: none;
+        }
+        .display{
+            display: block !important;
+        }
+        .remove{
+            display: none !important;
+        }
+      .img{
+        display: none ;
+      }
+
+ 
+    </style>
+</head>
+<body>
+    <button class="gg">
+        <img height="50" src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg">
+    </button>
+    <div><img class="img"  src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg"><button class="img">Close</button></div>
+    <script>
+        let img=document.querySelectorAll("img")
+        let btn=document.querySelectorAll("button")
+        btn[0].addEventListener("click",()=>{
+            img[1].classList.add("display");
+            img[0].classList.remove("close");
+            btn[0].classList.add("remove");
+            btn[1].classList.remove("remove");
+            btn[1].classList.add("display");
+
+
+        })
+        btn[1].addEventListener("click",()=>{
+            img[1].classList.add("close");
+            img[1].classList.remove("display");
+            btn[0].classList.remove("remove");
+            btn[1].classList.add("remove");
+
+
+        })
+    </script>
+</body>
+</html>
