@@ -133,3 +133,21 @@ var kidsWithCandies = function(candies, extraCandies) {
 console.log(kidsWithCandies([2,3,5,1,3],3))
 let as=[2,3,5,1,3]
 console.log(Math.max(...as))
+
+
+var canPlaceFlowers = function(flowerbed, n) {
+    let len=flowerbed.length;
+    let count=0;
+    for(let i=0;i<len;i++){
+        if(flowerbed[i]===0&&(i==0||flowerbed[i-1]==0)&&(i==len-1|| flowerbed[i+1]==0)){
+            flowerbed[i]=1
+            count++;
+        }
+
+    }
+    return count==n?true:false
+};
+console.log(canPlaceFlowers([0,0,1,0,1],1))
+
+let arrr=[0]
+console.log(arrr[-1])
