@@ -4,8 +4,8 @@ import {Link,useNavigate} from "react-router-dom"
 import Button from "./Button"
 import Input from './Input'
 import { Logo } from './header'
-import service from '../appWrite_services/service'
-import {Login } from "../redux_part/auth_store.js"
+import { service} from '../appWrite_services/service'
+import {login} from "../redux_part/auth_store.js"
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 function Sign_up() {
@@ -19,7 +19,7 @@ function Sign_up() {
         const userData= await  service.createAccount(data);
         if(userData){
             const userData=await service.check_login();
-            if(userData)dispatch(Login(userData))
+            if(userData)dispatch(login(userData))
             navigate("/")
         }
         }

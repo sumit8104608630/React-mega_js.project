@@ -4,9 +4,9 @@ import {Link,useNavigate} from "react-router-dom"
 import Button from "./Button"
 import Input from './Input'
 import { Logo } from './header'
-import {Login as authLogin} from "../redux_part/auth_store.js"
+import { login as authLogin } from '../redux_part/auth_store.js'; // Correct import
 import { useDispatch } from 'react-redux'
-import service from '../appWrite_services/service'
+import {service} from '../appWrite_services/service'
 import {useForm} from "react-hook-form"
 function Login() {
     const dispatch=useDispatch();

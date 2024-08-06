@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {useDispatch} from "react-redux"
 import './App.css'
 import { Footer, Header } from './component/header';
-import authService from './appWrite_services/service';
+import {service} from './appWrite_services/service';
 import { login,logOut } from './redux_part/auth_store';
 import { Outlet } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ function App() {
 const [Loading,setLoad]=useState(true);
 const dispatch=useDispatch();
 useEffect(()=>{
-  authService.check_login().then((userData)=>{
+  service.check_login().then((userData)=>{
    setLoad(false);
     if(userData){
     dispatch(login({userData}));

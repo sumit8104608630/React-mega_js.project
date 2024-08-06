@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 //import { Logo } from '../header'
 import Select from '../Select'
 import service from '../../appWrite_services/dtabaseService'
-import {Rte as RTE} from '../Rte'
+import  RTE from '../Rte.jsx'
 import { useSelector } from 'react-redux'
 function Post_Form({post}) {
     const {register,handleSubmit,watch,setValue,control,getValues}=useForm({

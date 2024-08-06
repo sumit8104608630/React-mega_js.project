@@ -1,5 +1,6 @@
 import config from "../config";
 import { Client, Account,ID } from "appwrite";
+//import { logOut } from "../redux_part/auth_store";
 
 export class architecture{
     client=new Client();
@@ -12,7 +13,7 @@ export class architecture{
     }
     async createAccount({name,email,password}) {
         try{
-        const account=   await this.account.create(ID.unique(),name,email,password);
+        const account=await this.account.create(ID.unique(),name,email,password);
          if(account){
             // handel login component
             return this.Login({email,password})
@@ -48,6 +49,5 @@ export class architecture{
         }
     }
 }
-const authService=new architecture()
-
-export default authService;
+const service=new architecture()
+export {service};

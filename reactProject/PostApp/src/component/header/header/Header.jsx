@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Container,LogOut,Logo } from '../index.js'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import "../../../App.css"
 function Header() {
     const authStatus=useSelector((state)=>state.auth.status)
    const navigate=useNavigate()
@@ -37,13 +37,13 @@ function Header() {
   },
   ]
   return (
-    <header>
+    <header className='py-3 shadow bg-gray-500'>
         <Container>
-            <nav>
-                <div>
+            <nav className='flex'>
+                <div className='mr-4'>
                     <Logo width='100px'/>    
                 </div>
-                <ul>
+                <ul className='flex ml-auto'>
                     {navItems.map((item)=>item.active?<li key={item.name}><button   className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full' onClick={()=>navigate.slug }>{item.name}</button></li>:null)}
                     {authStatus?(<li><LogOut/></li>):null}
                 </ul>
