@@ -7,8 +7,13 @@ import Container from '../Container'
 function AllPost() {
     const [post,setPost]=useState([]);
     useEffect(()=>{
-        service.getPosts([]).then((posts)  =>posts&&setPost(posts.documents)).catch((err)=>console.log(err))
+      service.getPosts([]).then((posts) => {
+        if (posts) {
+          setPost(posts.documents)
+        }
+    })
     },[])
+
   return (
     <div>
         <Container>

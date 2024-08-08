@@ -6,21 +6,23 @@ import { useNavigate } from 'react-router-dom'
 //import { Logo } from '../header'
 import Select from '../Select'
 import service from '../../appWrite_services/dtabaseService'
-import  RTE from '../Rte.jsx'
+import  Rte from '../Rte'
 import { useSelector } from 'react-redux'
 function Post_Form({post}) {
     const {register,handleSubmit,watch,setValue,control,getValues}=useForm({
         defaultValues:{
-            title:post?.title||'',
-            slug:post?.slug||'',
-            content:post?.content||'',
-            status:post?.status||'',
+            title: post?.title||'',
+            slug: post?.$id||'',
+            content: post?.content||'',
+            status: post?.status||"active",
         }
     });
     const navigate=useNavigate();
-    const userData=useSelector(state=>state.userData)
+    const userData=useSelector(state=>state.auth.userData)
     const submit =async(data)=>{
+        if(post){
         const file=await data.image[0]?service.upload(data.image[0]):null
+       
         if(file){
             service.deleteFile(post.image)
         }
@@ -35,33 +37,37 @@ function Post_Form({post}) {
                 if(file){
                     const fileId=file.$id;
                     data.image=fileId
-                    await service.createPost({...data,
-                        userData:userData.$id,
+                    await service.createPost({...data,userId:userData.$id,
                     }) 
                     if(dbPost){
-                        navigate(`/post${dbPost.$id}`)
+                        navigate(`/post/${dbPost.$id}`)
                     }
 
                 }
             }
+        }
        
     }
     const slugTransform=useCallback((value)=>{
-        if(value&& typeof value==String){
-            return value.trim().toLowerCase().replace(/[^a-zA-Z\d\s]+/g, "-").replace(/\s/g, "-");
+        if(value && typeof value==="string"){
+            return   value.trim()
+            .toLowerCase()
+            .replace(/[^a-zA-Z\d\s]+/g, "-")
+            .replace(/\s/g, "-");
         }
         return ""
     },[])
     useEffect(()=>{
         const subscription=watch((value,{name})=>{
             if(name==='title'){
-                setValue('slug',slugTransform(value.title,{shouldValidate:true}))
+                setValue('slug',slugTransform(value.title),{shouldValidate:true})
             }
         })
         return ()=>{
-            subscription.unsubscribe
+            subscription.unsubscribe(); 
         }
     },[watch,slugTransform,setValue])
+
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
     <div className="w-2/3 px-2">
@@ -80,7 +86,7 @@ function Post_Form({post}) {
                 setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
             }}
         />
-        <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+        <Rte label="Content :" name="content" control={control} defaultValue={getValues("content")} />
     </div>
     <div className="w-1/3 px-2">
         <Input

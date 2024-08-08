@@ -1,9 +1,9 @@
 import React from 'react'
-import {Login as Log} from "../../Login"
+import Login_p  from "../../Login"
 function Login() {
   return (
     <div>
-        <Log/>
+        <Login_p/>
     </div>
   )
 }

@@ -16,9 +16,9 @@ function Login() {
     const login=async(data)=>{
         setError("");
         try{
-const session=await service.Login(data);
+const session=await service.login(data);
 if(session){
-    const userData=await service.check_login()
+    const userData=await service.checkLogin()
     if(userData) dispatch(authLogin(userData))
         navigate("/")
 }

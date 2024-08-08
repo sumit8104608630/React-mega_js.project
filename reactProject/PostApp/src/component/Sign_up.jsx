@@ -5,7 +5,7 @@ import Button from "./Button"
 import Input from './Input'
 import { Logo } from './header'
 import { service} from '../appWrite_services/service'
-import {login} from "../redux_part/auth_store.js"
+import {login} from "../redux_part//auth_store.js"
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 function Sign_up() {
@@ -18,7 +18,7 @@ function Sign_up() {
         try{
         const userData= await  service.createAccount(data);
         if(userData){
-            const userData=await service.check_login();
+            const userData=await service.checkLogin();
             if(userData)dispatch(login(userData))
             navigate("/")
         }

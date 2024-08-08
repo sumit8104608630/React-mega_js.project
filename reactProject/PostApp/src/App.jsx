@@ -10,8 +10,7 @@ function App() {
 const [Loading,setLoad]=useState(true);
 const dispatch=useDispatch();
 useEffect(()=>{
-  service.check_login().then((userData)=>{
-   setLoad(false);
+  service.checkLogin().then((userData)=>{
     if(userData){
     dispatch(login({userData}));
     }
@@ -24,18 +23,17 @@ useEffect(()=>{
 
 //console.log(import.meta.env.VITE_APPWRITER_URL);
 
-  return !Loading?(<div className='min-h-screen flex flex-wrap content-between justify-center bg-gray-400'>
-  <div className='w-full flex flex-col justify-center items-center block'>
-    <Header/>
-    <main>
-    {/*<Outlet/>*/
-    "todo"}
-
-    </main>
-    <Footer/>
-  </div>
-    </div>):null
+  return !Loading ? (
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+         <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </div>
+  ) : null
 }
 //import authService from './appWrite_services/service';
-
 export default App
