@@ -47,6 +47,7 @@ export class DatabasesService {
             return await this.databases.getDocument(config.databaseId, config.collectionId, slug);
         } catch (error) {
             console.error("Get Post Error:", error);
+            return false
         }
     }
 
@@ -55,6 +56,7 @@ export class DatabasesService {
             return await this.databases.listDocuments(config.databaseId, config.collectionId, queries);
         } catch (error) {
             console.error("Get Posts Error:", error);
+            return false
         }
     }
 
@@ -63,6 +65,7 @@ export class DatabasesService {
             return await this.storage.createFile(config.bucketId, ID.unique(), file);
         } catch (error) {
             console.error("Upload File Error:", error);
+            return false
         }
     }
 
@@ -75,6 +78,7 @@ export class DatabasesService {
             return true;
         } catch (error) {
             console.error("Delete File Error:", error);
+            return false
         }
     }
 

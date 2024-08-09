@@ -9,7 +9,7 @@ import service from '../../appWrite_services/dtabaseService'
 import  Rte from '../Rte'
 import { useSelector } from 'react-redux'
 function Post_Form({post}) {
-    const {register,handleSubmit,watch,setValue,control,getValues}=useForm({
+    const { register, handleSubmit, watch, setValue, control, getValues }=useForm({
         defaultValues:{
             title: post?.title||'',
             slug: post?.$id||'',
@@ -117,6 +117,8 @@ function Post_Form({post}) {
     </div>
 </form>
   )
+
+  
 }
 
 export default Post_Form

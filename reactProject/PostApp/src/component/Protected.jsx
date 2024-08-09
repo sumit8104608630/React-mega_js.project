@@ -14,9 +14,13 @@ function Protected({ children, authentication = true }) {
       navigate('/');
     }
     setLoader(false);
-  }, [authStatus, navigate, authentication]);
+  }, [authStatus, authentication, navigate]);
 
-  return loader ? <h1>Loading...</h1> : <>{children}</>;
+  if (loader) {
+    return <h1>Loading...</h1>;
+  }
+
+  return <>{children}</>;
 }
 
 export default Protected;

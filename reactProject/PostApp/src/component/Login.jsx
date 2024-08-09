@@ -24,7 +24,7 @@ if(session){
 }
         }
         catch(err){
-            setError(err.message);
+            console.l(err.message);
         }
     }
   return (
