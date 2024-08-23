@@ -121,3 +121,99 @@ return false
  };
  console.log(increasingTriplet([6,7,1,2]
  ))
+
+ var moveZeroes = function(nums) {
+  let array_no =[];
+  let array_zero = [];
+  let len=nums.length;
+  for (let i=0;i<len;i++){
+    if(nums[i]==0){
+        array_zero.push(nums[i]);
+    }else if(nums[i]!=0){
+        array_no.push(nums[i]);
+    }
+  }
+  for (let i = 0; i < array_no.length; i++){
+    nums[i] = array_no[i];
+  }
+  for (let i = array_no.length; i < len; i++) {
+    nums[i] = 0;
+  }
+return nums
+ };
+ console.log(moveZeroes([0,1,0,3,12]))
+
+
+ var isSubsequence = function(s, t) {
+    let n1Len=s.length;
+    let n2Len=t.length;
+    if(n1Len==n2Len&&s==t){
+        return true
+    }
+    let i=0,j=0;
+    while(i<n1Len&&j<n2Len){
+        if(s[i]==t[j]){
+            i++;
+
+        }
+        
+            j++;
+        
+    }
+   return i==n1Len?true:false
+ };
+ console.log(isSubsequence("abc","ahbgdc"))
+
+
+ //let's see promise
+ // it have three states 
+ //pending 
+ //fulfilled
+ //rejected
+
+
+ const promise=new Promise((res,rej)=>{
+    //res("hello")
+    //rej("hello")
+    setTimeout(() => {console.log("Async task has completed")  
+          res()
+    },2000)
+ })
+
+ promise.then((data)=>{console.log("resolve")}).catch((err)=>{console.log(err)})
+
+
+ const promise_three=new Promise((res,rej)=>{
+    setTimeout(()=>{
+        res({
+            name:"sumit",
+            age:25,
+            occupation:"software engineer"
+        })
+    },5000)
+ })
+
+
+async  function data(){
+    
+
+ let data=await promise_three.then((data)=>{
+    return(data)
+ }).catch(err=>console.log(err))
+
+ console.log(data)
+}
+
+data()
+
+
+var chunk = function(arr, size) {
+    let arr=[];
+    for (let i = 0; i < arr.length; i += size) {
+        arr.push(arr.slice(i,i+size))
+    }
+};
+
+arr = [1,2,3,4,5], size = 1
+
+console.log(chunk(aar,size))
